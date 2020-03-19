@@ -1,0 +1,74 @@
+post:
+  operationId: AsyncUpdate
+  responses:
+    '200':
+      description: A successful response.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              request_id:
+                type: string
+    default:
+      description: An unexpected error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            persons:
+              type: array
+              items:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      external_id:
+                        type: string
+                      organization_external_id:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      middle_name:
+                        type: string
+                      email:
+                        type: string
+                      phone:
+                        type: string
+                    description: A human being.
+          title: Save
+    required: true
+  tags:
+    - Persons

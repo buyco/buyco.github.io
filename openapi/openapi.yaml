@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  title: client/v2/container/service.proto
+  version: '0.1'
+paths:
+  /v2/container-snapshots/async-create:
+    $ref: paths/v2@container-snapshots@async-create.yaml
+  /v2/container-snapshots/async-delete:
+    $ref: paths/v2@container-snapshots@async-delete.yaml
+  /v2/containers-snapshots/async-update:
+    $ref: paths/v2@containers-snapshots@async-update.yaml
+  /v2/organizations/async-create:
+    $ref: paths/v2@organizations@async-create.yaml
+  /v2/organizations/async-delete:
+    $ref: paths/v2@organizations@async-delete.yaml
+  /v2/organizations/async-update:
+    $ref: paths/v2@organizations@async-update.yaml
+  /v2/persons/async-create:
+    $ref: paths/v2@persons@async-create.yaml
+  /v2/persons/async-delete:
+    $ref: paths/v2@persons@async-delete.yaml
+  /v2/persons/async-update:
+    $ref: paths/v2@persons@async-update.yaml
