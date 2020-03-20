@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "client/v2/container/service.proto",
-    "version": "0.1"
+    "version": "0.2"
   },
   "paths": {
     "/v2/container-snapshots/async-create": {
@@ -75,7 +75,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "containers": {
+                  "container_snapshots": {
                     "type": "array",
                     "items": {
                       "type": "object",
@@ -326,9 +326,106 @@
                                       "type": "string"
                                     },
                                     "title": "Any additional references"
+                                  },
+                                  "gross_weight_g": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "title": "The cargo total gross weight in grams"
+                                  },
+                                  "net_weight_g": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "title": "The cargo total net weight in grams"
+                                  },
+                                  "volume_cm3": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "title": "The cargo total volume in cubic centimeters"
+                                  },
+                                  "package_count": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "title": "Number of packages"
+                                  },
+                                  "package_spec": {
+                                    "type": "object",
+                                    "properties": {
+                                      "type_name": {
+                                        "type": "string",
+                                        "title": "The type of package"
+                                      },
+                                      "gross_weight_g": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The gross weight in grams"
+                                      },
+                                      "net_weight_g": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The net weight in grams"
+                                      },
+                                      "volume_cm3": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The volume in cubic centimeters"
+                                      },
+                                      "height_mm": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The height in millimeters"
+                                      },
+                                      "length_mm": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The length in millimeters"
+                                      },
+                                      "width_mm": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The width in millimeters"
+                                      }
+                                    },
+                                    "title": "Specifications of a package"
+                                  },
+                                  "packaged_products": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "piece_count": {
+                                          "type": "integer",
+                                          "format": "int32",
+                                          "description": "The amount of product pieces."
+                                        },
+                                        "product": {
+                                          "type": "object",
+                                          "properties": {
+                                            "sku": {
+                                              "type": "string",
+                                              "title": "Stock Keeping Unit"
+                                            },
+                                            "name": {
+                                              "type": "string",
+                                              "title": "Name / Identifier"
+                                            },
+                                            "harmonized_system_code": {
+                                              "type": "string",
+                                              "title": "Harmonized System Code"
+                                            },
+                                            "dangerous_goods_code": {
+                                              "type": "string",
+                                              "title": "UN dangerous goods code"
+                                            }
+                                          },
+                                          "description": "A product."
+                                        }
+                                      },
+                                      "title": "Product description and associated quantity"
+                                    },
+                                    "title": "Products"
                                   }
                                 },
-                                "description": "The contents of a container."
+                                "title": "Part of a container, an aggregate of products, \nsharing common characteristics (e.g. HS code, PO number, packaging  ...)"
                               },
                               "route": {
                                 "type": "object",
@@ -377,86 +474,6 @@
                                   }
                                 },
                                 "description": "Specify how to route a cargo."
-                              },
-                              "packages": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "data": {
-                                      "type": "object",
-                                      "properties": {
-                                        "gross_weight_g": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The gross weight in grams"
-                                        },
-                                        "net_weight_g": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The net weight in grams"
-                                        },
-                                        "volume_cm3": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The volume in cubic centimeters"
-                                        },
-                                        "height_mm": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The height in millimeters"
-                                        },
-                                        "length_mm": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The length in millimeters"
-                                        },
-                                        "width_mm": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The width in millimeters"
-                                        }
-                                      },
-                                      "description": "A collection of packaged products."
-                                    },
-                                    "products": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "quantity": {
-                                            "type": "integer",
-                                            "format": "int32",
-                                            "description": "The amount of products in the package."
-                                          },
-                                          "data": {
-                                            "type": "object",
-                                            "properties": {
-                                              "sku": {
-                                                "type": "string",
-                                                "title": "Stock Keeping Unit"
-                                              },
-                                              "name": {
-                                                "type": "string",
-                                                "title": "Name / Identifier"
-                                              },
-                                              "harmonized_system_code": {
-                                                "type": "string",
-                                                "title": "Harmonized System Code"
-                                              },
-                                              "dangerous_goods_code": {
-                                                "type": "string",
-                                                "title": "UN dangerous goods code"
-                                              }
-                                            },
-                                            "description": "A product."
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                "title": "Packages within the cargo"
                               }
                             },
                             "description": "A cargo links an order to physical items."
@@ -868,7 +885,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "containers": {
+                  "container_snapshots": {
                     "type": "array",
                     "items": {
                       "type": "object",
@@ -1119,9 +1136,106 @@
                                       "type": "string"
                                     },
                                     "title": "Any additional references"
+                                  },
+                                  "gross_weight_g": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "title": "The cargo total gross weight in grams"
+                                  },
+                                  "net_weight_g": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "title": "The cargo total net weight in grams"
+                                  },
+                                  "volume_cm3": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "title": "The cargo total volume in cubic centimeters"
+                                  },
+                                  "package_count": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "title": "Number of packages"
+                                  },
+                                  "package_spec": {
+                                    "type": "object",
+                                    "properties": {
+                                      "type_name": {
+                                        "type": "string",
+                                        "title": "The type of package"
+                                      },
+                                      "gross_weight_g": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The gross weight in grams"
+                                      },
+                                      "net_weight_g": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The net weight in grams"
+                                      },
+                                      "volume_cm3": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The volume in cubic centimeters"
+                                      },
+                                      "height_mm": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The height in millimeters"
+                                      },
+                                      "length_mm": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The length in millimeters"
+                                      },
+                                      "width_mm": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "title": "The width in millimeters"
+                                      }
+                                    },
+                                    "title": "Specifications of a package"
+                                  },
+                                  "packaged_products": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "piece_count": {
+                                          "type": "integer",
+                                          "format": "int32",
+                                          "description": "The amount of product pieces."
+                                        },
+                                        "product": {
+                                          "type": "object",
+                                          "properties": {
+                                            "sku": {
+                                              "type": "string",
+                                              "title": "Stock Keeping Unit"
+                                            },
+                                            "name": {
+                                              "type": "string",
+                                              "title": "Name / Identifier"
+                                            },
+                                            "harmonized_system_code": {
+                                              "type": "string",
+                                              "title": "Harmonized System Code"
+                                            },
+                                            "dangerous_goods_code": {
+                                              "type": "string",
+                                              "title": "UN dangerous goods code"
+                                            }
+                                          },
+                                          "description": "A product."
+                                        }
+                                      },
+                                      "title": "Product description and associated quantity"
+                                    },
+                                    "title": "Products"
                                   }
                                 },
-                                "description": "The contents of a container."
+                                "title": "Part of a container, an aggregate of products, \nsharing common characteristics (e.g. HS code, PO number, packaging  ...)"
                               },
                               "route": {
                                 "type": "object",
@@ -1170,86 +1284,6 @@
                                   }
                                 },
                                 "description": "Specify how to route a cargo."
-                              },
-                              "packages": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "data": {
-                                      "type": "object",
-                                      "properties": {
-                                        "gross_weight_g": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The gross weight in grams"
-                                        },
-                                        "net_weight_g": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The net weight in grams"
-                                        },
-                                        "volume_cm3": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The volume in cubic centimeters"
-                                        },
-                                        "height_mm": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The height in millimeters"
-                                        },
-                                        "length_mm": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The length in millimeters"
-                                        },
-                                        "width_mm": {
-                                          "type": "string",
-                                          "format": "int64",
-                                          "title": "The width in millimeters"
-                                        }
-                                      },
-                                      "description": "A collection of packaged products."
-                                    },
-                                    "products": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "quantity": {
-                                            "type": "integer",
-                                            "format": "int32",
-                                            "description": "The amount of products in the package."
-                                          },
-                                          "data": {
-                                            "type": "object",
-                                            "properties": {
-                                              "sku": {
-                                                "type": "string",
-                                                "title": "Stock Keeping Unit"
-                                              },
-                                              "name": {
-                                                "type": "string",
-                                                "title": "Name / Identifier"
-                                              },
-                                              "harmonized_system_code": {
-                                                "type": "string",
-                                                "title": "Harmonized System Code"
-                                              },
-                                              "dangerous_goods_code": {
-                                                "type": "string",
-                                                "title": "UN dangerous goods code"
-                                              }
-                                            },
-                                            "description": "A product."
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                "title": "Packages within the cargo"
                               }
                             },
                             "description": "A cargo links an order to physical items."
