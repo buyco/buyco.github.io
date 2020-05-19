@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "client/v2/container/service.proto",
-    "version": "0.3"
+    "version": "version not set"
   },
   "paths": {
     "/v2/container-snapshots/async-create": {
@@ -163,11 +163,11 @@
                             "grade": {
                               "type": "string",
                               "enum": [
-                                "GRADE_NOT_SET",
+                                "GRADE_UNSPECIFIED",
                                 "FOOD_GRADE"
                               ],
-                              "default": "GRADE_NOT_SET",
-                              "title": "- GRADE_NOT_SET: No specific grade required\n - FOOD_GRADE: Food grade required"
+                              "default": "GRADE_UNSPECIFIED",
+                              "title": "- GRADE_UNSPECIFIED: No specific grade required\n - FOOD_GRADE: Food grade required"
                             },
                             "ventilation_specs": {
                               "type": "object",
@@ -973,11 +973,11 @@
                             "grade": {
                               "type": "string",
                               "enum": [
-                                "GRADE_NOT_SET",
+                                "GRADE_UNSPECIFIED",
                                 "FOOD_GRADE"
                               ],
-                              "default": "GRADE_NOT_SET",
-                              "title": "- GRADE_NOT_SET: No specific grade required\n - FOOD_GRADE: Food grade required"
+                              "default": "GRADE_UNSPECIFIED",
+                              "title": "- GRADE_UNSPECIFIED: No specific grade required\n - FOOD_GRADE: Food grade required"
                             },
                             "ventilation_specs": {
                               "type": "object",
@@ -2440,12 +2440,11 @@
                         "status": {
                           "type": "string",
                           "enum": [
-                            "STATUS_UNKNOWN",
                             "OPEN",
                             "CANCELLED",
                             "DELETED"
                           ],
-                          "default": "STATUS_UNKNOWN"
+                          "default": "OPEN"
                         },
                         "cutoff_dates": {
                           "type": "object",
@@ -2509,16 +2508,17 @@
                         "booking_status": {
                           "type": "string",
                           "enum": [
+                            "NONE",
                             "DRAFT",
                             "SENT",
-                            "AMEND_REQUESTED",
                             "PENDING",
                             "CONFIRMED",
                             "CANCELLED",
                             "DECLINED",
-                            "FAILED"
+                            "FAILED",
+                            "AMEND_REQUESTED"
                           ],
-                          "default": "DRAFT"
+                          "default": "NONE"
                         },
                         "booking_reference": {
                           "type": "string",
@@ -2541,9 +2541,13 @@
                                 "local_date": {
                                   "type": "string",
                                   "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                },
+                                "local_time": {
+                                  "type": "string",
+                                  "title": "Local time, optional, hh:mm:ss ISO 8601 format"
                                 }
                               },
-                              "title": "A local date in ISO 8601 format"
+                              "title": "A local date and optional time, in ISO 8601 formats"
                             },
                             "arrival": {
                               "type": "object",
@@ -2551,9 +2555,13 @@
                                 "local_date": {
                                   "type": "string",
                                   "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                },
+                                "local_time": {
+                                  "type": "string",
+                                  "title": "Local time, optional, hh:mm:ss ISO 8601 format"
                                 }
                               },
-                              "title": "A local date in ISO 8601 format"
+                              "title": "A local date and optional time, in ISO 8601 formats"
                             }
                           },
                           "title": "Calculated based on latest data"
@@ -2646,11 +2654,11 @@
                                   "grade": {
                                     "type": "string",
                                     "enum": [
-                                      "GRADE_NOT_SET",
+                                      "GRADE_UNSPECIFIED",
                                       "FOOD_GRADE"
                                     ],
-                                    "default": "GRADE_NOT_SET",
-                                    "title": "- GRADE_NOT_SET: No specific grade required\n - FOOD_GRADE: Food grade required"
+                                    "default": "GRADE_UNSPECIFIED",
+                                    "title": "- GRADE_UNSPECIFIED: No specific grade required\n - FOOD_GRADE: Food grade required"
                                   },
                                   "ventilation_specs": {
                                     "type": "object",
@@ -3323,9 +3331,13 @@
                                       "local_date": {
                                         "type": "string",
                                         "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                      },
+                                      "local_time": {
+                                        "type": "string",
+                                        "title": "Local time, optional, hh:mm:ss ISO 8601 format"
                                       }
                                     },
-                                    "title": "A local date in ISO 8601 format"
+                                    "title": "A local date and optional time, in ISO 8601 formats"
                                   },
                                   "arrival": {
                                     "type": "object",
@@ -3333,9 +3345,13 @@
                                       "local_date": {
                                         "type": "string",
                                         "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                      },
+                                      "local_time": {
+                                        "type": "string",
+                                        "title": "Local time, optional, hh:mm:ss ISO 8601 format"
                                       }
                                     },
-                                    "title": "A local date in ISO 8601 format"
+                                    "title": "A local date and optional time, in ISO 8601 formats"
                                   }
                                 },
                                 "title": "Calculated based on latest data"
@@ -3352,7 +3368,7 @@
                                   "TRUCK",
                                   "RAIL",
                                   "OTHER",
-                                  "UNDEFINED"
+                                  "UNSPECIFIED"
                                 ],
                                 "default": "VESSEL"
                               }
@@ -3404,6 +3420,22 @@
                         },
                         "discrepancies": {
                           "type": "object"
+                        },
+                        "tracking_status": {
+                          "type": "string",
+                          "enum": [
+                            "NONE",
+                            "UNDER_PREPARATION",
+                            "INLAND_PRE_CARRIAGE",
+                            "AT_POL",
+                            "AT_SEA",
+                            "AT_POD",
+                            "INLAND_ON_CARRIAGE",
+                            "IN_TRANSSHIPMENT",
+                            "COMPLETED"
+                          ],
+                          "default": "NONE",
+                          "title": "TODO move to tracking / common package ?"
                         }
                       },
                       "description": "Read-only, never used to update a shipment.\n'Up-to-date' information, vs requirements, plan, booking, tracking ..."
