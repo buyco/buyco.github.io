@@ -2,12 +2,12 @@
   "openapi": "3.0.0",
   "info": {
     "title": "client/v2/container/service.proto",
-    "version": "0.2"
+    "version": "0.3"
   },
   "paths": {
     "/v2/container-snapshots/async-create": {
       "post": {
-        "operationId": "Create",
+        "operationId": "AsyncCreateContainerSnapshots",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -392,10 +392,10 @@
                                     "items": {
                                       "type": "object",
                                       "properties": {
-                                        "piece_count": {
+                                        "quantity": {
                                           "type": "integer",
                                           "format": "int32",
-                                          "description": "The amount of product pieces."
+                                          "description": "The number of products."
                                         },
                                         "product": {
                                           "type": "object",
@@ -425,7 +425,7 @@
                                     "title": "Products"
                                   }
                                 },
-                                "title": "Part of a container, an aggregate of products, \nsharing common characteristics (e.g. HS code, PO number, packaging  ...)"
+                                "title": "Part of a container, an aggregate of products,\nsharing common characteristics (e.g. HS code, PO number, packaging  ...)"
                               },
                               "route": {
                                 "type": "object",
@@ -618,10 +618,10 @@
                                     },
                                     "local_time": {
                                       "type": "string",
-                                      "title": "Local time, hh:mm:ss ISO 8601 format"
+                                      "title": "Local time, optional, hh:mm:ss ISO 8601 format"
                                     }
                                   },
-                                  "title": "A local date and (required) time, in ISO 8601 formats"
+                                  "title": "A local date and optional time, in ISO 8601 formats"
                                 },
                                 "departure": {
                                   "type": "object",
@@ -730,7 +730,7 @@
     },
     "/v2/container-snapshots/async-delete": {
       "post": {
-        "operationId": "Delete",
+        "operationId": "AsyncDeleteContainerSnapshots",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -817,7 +817,7 @@
     },
     "/v2/containers-snapshots/async-update": {
       "post": {
-        "operationId": "Update",
+        "operationId": "AsyncUpdateContainerSnapshots",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1202,10 +1202,10 @@
                                     "items": {
                                       "type": "object",
                                       "properties": {
-                                        "piece_count": {
+                                        "quantity": {
                                           "type": "integer",
                                           "format": "int32",
-                                          "description": "The amount of product pieces."
+                                          "description": "The number of products."
                                         },
                                         "product": {
                                           "type": "object",
@@ -1235,7 +1235,7 @@
                                     "title": "Products"
                                   }
                                 },
-                                "title": "Part of a container, an aggregate of products, \nsharing common characteristics (e.g. HS code, PO number, packaging  ...)"
+                                "title": "Part of a container, an aggregate of products,\nsharing common characteristics (e.g. HS code, PO number, packaging  ...)"
                               },
                               "route": {
                                 "type": "object",
@@ -1428,10 +1428,10 @@
                                     },
                                     "local_time": {
                                       "type": "string",
-                                      "title": "Local time, hh:mm:ss ISO 8601 format"
+                                      "title": "Local time, optional, hh:mm:ss ISO 8601 format"
                                     }
                                   },
-                                  "title": "A local date and (required) time, in ISO 8601 formats"
+                                  "title": "A local date and optional time, in ISO 8601 formats"
                                 },
                                 "departure": {
                                   "type": "object",
@@ -1540,7 +1540,7 @@
     },
     "/v2/organizations/async-create": {
       "post": {
-        "operationId": "AsyncCreate",
+        "operationId": "AsyncCreateOrganizations",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1626,9 +1626,15 @@
                               "type": "string",
                               "title": "Tax or VAT identifier (i.e. US EIN)"
                             },
-                            "official_identifier": {
+                            "email": {
                               "type": "string",
                               "title": "Country or state identifier (i.e French SIRET)"
+                            },
+                            "phone": {
+                              "type": "string"
+                            },
+                            "official_identifier": {
+                              "type": "string"
                             }
                           },
                           "description": "An entity comprising of multiple people working towards a common goal."
@@ -1711,7 +1717,7 @@
     },
     "/v2/organizations/async-delete": {
       "post": {
-        "operationId": "AsyncDelete",
+        "operationId": "AsyncDeleteOrganizations",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1799,7 +1805,7 @@
     },
     "/v2/organizations/async-update": {
       "post": {
-        "operationId": "AsyncUpdate",
+        "operationId": "AsyncUpdateOrganizations",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1885,9 +1891,15 @@
                               "type": "string",
                               "title": "Tax or VAT identifier (i.e. US EIN)"
                             },
-                            "official_identifier": {
+                            "email": {
                               "type": "string",
                               "title": "Country or state identifier (i.e French SIRET)"
+                            },
+                            "phone": {
+                              "type": "string"
+                            },
+                            "official_identifier": {
+                              "type": "string"
                             }
                           },
                           "description": "An entity comprising of multiple people working towards a common goal."
@@ -1970,7 +1982,7 @@
     },
     "/v2/persons/async-create": {
       "post": {
-        "operationId": "AsyncCreate",
+        "operationId": "AsyncCreatePersons",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2087,7 +2099,7 @@
     },
     "/v2/persons/async-delete": {
       "post": {
-        "operationId": "AsyncDelete",
+        "operationId": "AsyncDeletePersons",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2175,7 +2187,7 @@
     },
     "/v2/persons/async-update": {
       "post": {
-        "operationId": "AsyncUpdate",
+        "operationId": "AsyncUpdatePersons",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2287,6 +2299,1202 @@
         },
         "tags": [
           "Persons"
+        ]
+      }
+    },
+    "/v2/shipment/{buyco_reference}": {
+      "patch": {
+        "operationId": "UpdateShipment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type_url": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string",
+                            "format": "byte"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "buyco_reference",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "buyco_reference": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "external_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+          "Shipment"
+        ]
+      }
+    },
+    "/v2/shipment_summary/{buyco_reference}": {
+      "get": {
+        "operationId": "GetShipmentSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "buyco_reference": {
+                          "type": "string",
+                          "title": "Buyco identifier for the shipment"
+                        },
+                        "shipment_created_at": {
+                          "type": "object",
+                          "properties": {
+                            "local_date": {
+                              "type": "string",
+                              "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                            },
+                            "local_time": {
+                              "type": "string",
+                              "title": "Local time, hh:mm:ss ISO 8601 format"
+                            }
+                          },
+                          "title": "A local date and (required) time, in ISO 8601 formats"
+                        },
+                        "external_id": {
+                          "type": "string",
+                          "title": "An optional external identifier"
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "STATUS_UNKNOWN",
+                            "OPEN",
+                            "CANCELLED",
+                            "DELETED"
+                          ],
+                          "default": "STATUS_UNKNOWN"
+                        },
+                        "cutoff_dates": {
+                          "type": "object",
+                          "properties": {
+                            "vgm": {
+                              "type": "object",
+                              "properties": {
+                                "local_date": {
+                                  "type": "string",
+                                  "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                },
+                                "local_time": {
+                                  "type": "string",
+                                  "title": "Local time, optional, hh:mm:ss ISO 8601 format"
+                                }
+                              },
+                              "title": "A local date and optional time, in ISO 8601 formats"
+                            },
+                            "terminal": {
+                              "type": "object",
+                              "properties": {
+                                "local_date": {
+                                  "type": "string",
+                                  "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                },
+                                "local_time": {
+                                  "type": "string",
+                                  "title": "Local time, optional, hh:mm:ss ISO 8601 format"
+                                }
+                              },
+                              "title": "A local date and optional time, in ISO 8601 formats"
+                            },
+                            "document": {
+                              "type": "object",
+                              "properties": {
+                                "local_date": {
+                                  "type": "string",
+                                  "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                },
+                                "local_time": {
+                                  "type": "string",
+                                  "title": "Local time, optional, hh:mm:ss ISO 8601 format"
+                                }
+                              },
+                              "title": "A local date and optional time, in ISO 8601 formats"
+                            }
+                          }
+                        },
+                        "carrier": {
+                          "type": "object",
+                          "properties": {
+                            "scac": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          },
+                          "title": "TODO set as common"
+                        },
+                        "booking_status": {
+                          "type": "string",
+                          "enum": [
+                            "DRAFT",
+                            "SENT",
+                            "AMEND_REQUESTED",
+                            "PENDING",
+                            "CONFIRMED",
+                            "CANCELLED",
+                            "DECLINED",
+                            "FAILED"
+                          ],
+                          "default": "DRAFT"
+                        },
+                        "booking_reference": {
+                          "type": "string",
+                          "title": "Booking reference (or booking number)"
+                        },
+                        "bill_of_lading_number": {
+                          "type": "string",
+                          "description": "Bill of lading number is an identifier that links to a shipment."
+                        },
+                        "empty_pickup_reference": {
+                          "type": "string",
+                          "description": "Reference number for the empty container pickup."
+                        },
+                        "times": {
+                          "type": "object",
+                          "properties": {
+                            "departure": {
+                              "type": "object",
+                              "properties": {
+                                "local_date": {
+                                  "type": "string",
+                                  "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                }
+                              },
+                              "title": "A local date in ISO 8601 format"
+                            },
+                            "arrival": {
+                              "type": "object",
+                              "properties": {
+                                "local_date": {
+                                  "type": "string",
+                                  "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                }
+                              },
+                              "title": "A local date in ISO 8601 format"
+                            }
+                          },
+                          "title": "Calculated based on latest data"
+                        },
+                        "container_snapshots": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "data": {
+                                "type": "object",
+                                "properties": {
+                                  "external_id": {
+                                    "type": "string",
+                                    "description": "An external (client-side) identifier."
+                                  },
+                                  "size_class": {
+                                    "type": "string",
+                                    "enum": [
+                                      "SIZE_UNSPECIFIED",
+                                      "SIZE_20",
+                                      "SIZE_40",
+                                      "SIZE_45",
+                                      "SIZE_40HC",
+                                      "SIZE_45HC",
+                                      "SIZE_48HC",
+                                      "SIZE_53HC"
+                                    ],
+                                    "default": "SIZE_UNSPECIFIED",
+                                    "description": "Simplified size representation, mapped to ISO codes internally.\n\n - SIZE_20: 20 foot\n - SIZE_40: 40 foot\n - SIZE_45: 45 foot\n - SIZE_40HC: 40 foot high cube\n - SIZE_45HC: 45 foot high cube\n - SIZE_48HC: 48 foot high cube\n - SIZE_53HC: 53 foot high cube"
+                                  },
+                                  "type_class": {
+                                    "type": "string",
+                                    "enum": [
+                                      "GENERAL",
+                                      "THERMAL",
+                                      "OPEN_TOP",
+                                      "TANK",
+                                      "VENTILATED",
+                                      "BULK",
+                                      "PLATFORM",
+                                      "SPECIAL",
+                                      "AIR_SURFACE"
+                                    ],
+                                    "default": "GENERAL",
+                                    "description": "Type class, mapped to specific ISO codes internally.\nThe default is GENERAL.\n\n - GENERAL: General purpose container (standard dry). Non-ventilated.\n - THERMAL: Thermal container (reefer): refrigerated, heated, or insulated.\n - OPEN_TOP: Open top, tunnel, open sides, etc\n - TANK: Tank container\n - VENTILATED: Ventilated dry (Coffee).\n - BULK: Dry bulk\n - PLATFORM: Flat platform\n - SPECIAL: Specialty, named (i.e. animal carrier)\n - AIR_SURFACE: Air / Surface"
+                                  },
+                                  "stuffing_reference": {
+                                    "type": "string",
+                                    "title": "Container stuffing reference"
+                                  },
+                                  "shipper_owned": {
+                                    "type": "boolean",
+                                    "format": "boolean",
+                                    "title": "Whether the shipper owns the container"
+                                  },
+                                  "seals": {
+                                    "type": "object",
+                                    "properties": {
+                                      "carrier": {
+                                        "type": "string",
+                                        "description": "Carrier's seal number."
+                                      },
+                                      "shipper": {
+                                        "type": "string",
+                                        "description": "Shipper's seal number."
+                                      },
+                                      "customs": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "title": "Seal numbers on a container"
+                                  },
+                                  "measured_weight_g": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "description": "Measured weight of the container and its cargo, in grams. Verified Gross Mass."
+                                  },
+                                  "additional_references": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "type": "string"
+                                    },
+                                    "description": "Key: value pairs of additional references."
+                                  },
+                                  "grouping_rule_code": {
+                                    "type": "string",
+                                    "description": "A rule code for grouping containers into shipments. The rule code must already be present."
+                                  },
+                                  "grade": {
+                                    "type": "string",
+                                    "enum": [
+                                      "GRADE_NOT_SET",
+                                      "FOOD_GRADE"
+                                    ],
+                                    "default": "GRADE_NOT_SET",
+                                    "title": "- GRADE_NOT_SET: No specific grade required\n - FOOD_GRADE: Food grade required"
+                                  },
+                                  "ventilation_specs": {
+                                    "type": "object",
+                                    "properties": {
+                                      "ventilation_cm3_hour": {
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "title": "Ventilation requirements in cubic centimeters per hour"
+                                      }
+                                    },
+                                    "description": "Extra specifications for a ventilated dry container."
+                                  },
+                                  "thermal_specs": {
+                                    "type": "object",
+                                    "properties": {
+                                      "ventilation_cm3_hour": {
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "title": "Ventilation requirements in cubic centimeters per hour"
+                                      },
+                                      "temperature_celsius": {
+                                        "type": "object",
+                                        "properties": {
+                                          "units": {
+                                            "type": "string",
+                                            "format": "int64",
+                                            "title": "Whole units part of the amount"
+                                          },
+                                          "nanos": {
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "title": "Nano units of the amount (10^-9)\nMust be same sign as units\nExample: The value -1.25 is represented as units=-1 and nanos=-250000000"
+                                          }
+                                        }
+                                      },
+                                      "humidity_percent": {
+                                        "type": "object",
+                                        "properties": {
+                                          "units": {
+                                            "type": "string",
+                                            "format": "int64",
+                                            "title": "Whole units part of the amount"
+                                          },
+                                          "nanos": {
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "title": "Nano units of the amount (10^-9)\nMust be same sign as units\nExample: The value -1.25 is represented as units=-1 and nanos=-250000000"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "description": "Extra specifications for a thermal (Reefer or Heated) container."
+                                  },
+                                  "open_top_specs": {
+                                    "type": "object",
+                                    "properties": {
+                                      "out_of_gauge_mm": {
+                                        "type": "string",
+                                        "format": "int64"
+                                      }
+                                    },
+                                    "description": "Extra specifications for an open-top container."
+                                  },
+                                  "tank_specs": {
+                                    "type": "object",
+                                    "properties": {
+                                      "pressure_kpa": {
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "title": "Pressure requirements, in Kilopascals"
+                                      },
+                                      "temperature_celsius": {
+                                        "type": "object",
+                                        "properties": {
+                                          "units": {
+                                            "type": "string",
+                                            "format": "int64",
+                                            "title": "Whole units part of the amount"
+                                          },
+                                          "nanos": {
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "title": "Nano units of the amount (10^-9)\nMust be same sign as units\nExample: The value -1.25 is represented as units=-1 and nanos=-250000000"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "description": "Extra specifications for a tank container."
+                                  }
+                                },
+                                "description": "Represents a container at various steps in the shipment process."
+                              },
+                              "physical_container": {
+                                "type": "object",
+                                "properties": {
+                                  "iso_size_type": {
+                                    "type": "string",
+                                    "title": "4 character ISO size and type code"
+                                  },
+                                  "identification_number": {
+                                    "type": "string",
+                                    "title": "Container's 11 character identification number"
+                                  },
+                                  "tare_weight_g": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "title": "Tare (unladen) weight, in grams"
+                                  },
+                                  "max_gross_weight_g": {
+                                    "type": "string",
+                                    "format": "int64",
+                                    "title": "Maximum gross (laden) weight, in grams"
+                                  }
+                                },
+                                "description": "The actual real-world container."
+                              },
+                              "cargoes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "external_id": {
+                                          "type": "string",
+                                          "title": "An external (client-side) identifier"
+                                        },
+                                        "sales_order_number": {
+                                          "type": "string",
+                                          "title": "The sales order number of the seller"
+                                        },
+                                        "purchase_order_number": {
+                                          "type": "string",
+                                          "title": "The purchase order number of the buyer"
+                                        },
+                                        "delivery_number": {
+                                          "type": "string",
+                                          "title": "The delivery number (ie: for warehouse)"
+                                        },
+                                        "shipment_number": {
+                                          "type": "string",
+                                          "title": "The shipment number (ie: to port)"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "title": "A general description or any additional information"
+                                        },
+                                        "marks_and_numbers": {
+                                          "type": "string",
+                                          "title": "Marks and numbers as written on the packages"
+                                        },
+                                        "additional_references": {
+                                          "type": "object",
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "title": "Any additional references"
+                                        },
+                                        "gross_weight_g": {
+                                          "type": "string",
+                                          "format": "int64",
+                                          "title": "The cargo total gross weight in grams"
+                                        },
+                                        "net_weight_g": {
+                                          "type": "string",
+                                          "format": "int64",
+                                          "title": "The cargo total net weight in grams"
+                                        },
+                                        "volume_cm3": {
+                                          "type": "string",
+                                          "format": "int64",
+                                          "title": "The cargo total volume in cubic centimeters"
+                                        },
+                                        "package_count": {
+                                          "type": "integer",
+                                          "format": "int32",
+                                          "title": "Number of packages"
+                                        },
+                                        "package_spec": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type_name": {
+                                              "type": "string",
+                                              "title": "The type of package"
+                                            },
+                                            "gross_weight_g": {
+                                              "type": "string",
+                                              "format": "int64",
+                                              "title": "The gross weight in grams"
+                                            },
+                                            "net_weight_g": {
+                                              "type": "string",
+                                              "format": "int64",
+                                              "title": "The net weight in grams"
+                                            },
+                                            "volume_cm3": {
+                                              "type": "string",
+                                              "format": "int64",
+                                              "title": "The volume in cubic centimeters"
+                                            },
+                                            "height_mm": {
+                                              "type": "string",
+                                              "format": "int64",
+                                              "title": "The height in millimeters"
+                                            },
+                                            "length_mm": {
+                                              "type": "string",
+                                              "format": "int64",
+                                              "title": "The length in millimeters"
+                                            },
+                                            "width_mm": {
+                                              "type": "string",
+                                              "format": "int64",
+                                              "title": "The width in millimeters"
+                                            }
+                                          },
+                                          "title": "Specifications of a package"
+                                        },
+                                        "packaged_products": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "quantity": {
+                                                "type": "integer",
+                                                "format": "int32",
+                                                "description": "The number of products."
+                                              },
+                                              "product": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "sku": {
+                                                    "type": "string",
+                                                    "title": "Stock Keeping Unit"
+                                                  },
+                                                  "name": {
+                                                    "type": "string",
+                                                    "title": "Name / Identifier"
+                                                  },
+                                                  "harmonized_system_code": {
+                                                    "type": "string",
+                                                    "title": "Harmonized System Code"
+                                                  },
+                                                  "dangerous_goods_code": {
+                                                    "type": "string",
+                                                    "title": "UN dangerous goods code"
+                                                  }
+                                                },
+                                                "description": "A product."
+                                              }
+                                            },
+                                            "title": "Product description and associated quantity"
+                                          },
+                                          "title": "Products"
+                                        }
+                                      },
+                                      "title": "Part of a container, an aggregate of products,\nsharing common characteristics (e.g. HS code, PO number, packaging  ...)"
+                                    },
+                                    "route": {
+                                      "type": "object",
+                                      "properties": {
+                                        "locations": {
+                                          "type": "object",
+                                          "properties": {
+                                            "stuffing_location": {
+                                              "type": "object",
+                                              "properties": {
+                                                "organization_external_id": {
+                                                  "type": "string"
+                                                },
+                                                "person_external_id": {
+                                                  "type": "string"
+                                                },
+                                                "unlocode": {
+                                                  "type": "string",
+                                                  "title": "UN/Locode"
+                                                }
+                                              },
+                                              "description": "A location specification."
+                                            }
+                                          },
+                                          "description": "Locations along the cargo's route."
+                                        },
+                                        "dates_times": {
+                                          "type": "object",
+                                          "properties": {
+                                            "stuffing_readiness": {
+                                              "type": "object",
+                                              "properties": {
+                                                "local_date": {
+                                                  "type": "string",
+                                                  "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                                },
+                                                "local_time": {
+                                                  "type": "string",
+                                                  "title": "Local time, optional, hh:mm:ss ISO 8601 format"
+                                                }
+                                              },
+                                              "title": "A local date and optional time, in ISO 8601 formats"
+                                            }
+                                          },
+                                          "description": "Dates and times of a cargo's route milestones."
+                                        }
+                                      },
+                                      "description": "Specify how to route a cargo."
+                                    }
+                                  },
+                                  "description": "A cargo links an order to physical items."
+                                },
+                                "description": "The cargoes inside the container."
+                              },
+                              "route": {
+                                "type": "object",
+                                "properties": {
+                                  "data": {
+                                    "type": "object",
+                                    "properties": {
+                                      "incoterm": {
+                                        "type": "object",
+                                        "properties": {
+                                          "code": {
+                                            "type": "string",
+                                            "enum": [
+                                              "INCOTERM_UNSPECIFIED",
+                                              "FOB",
+                                              "CFR",
+                                              "FAS",
+                                              "CIF",
+                                              "EXW",
+                                              "FCA",
+                                              "CPT",
+                                              "CIP",
+                                              "DAP",
+                                              "DPU",
+                                              "DDP",
+                                              "DAT",
+                                              "DAF",
+                                              "DES",
+                                              "DEQ",
+                                              "DDU"
+                                            ],
+                                            "default": "INCOTERM_UNSPECIFIED",
+                                            "description": "- FOB: Free On Board\n - CFR: Cost and Freight\n - FAS: Free Alongside Ship\n - CIF: Cost, Insurance & Freight\n - EXW: Ex Works\n - FCA: Free Carrier\n - CPT: Carriage Paid To\n - CIP: Carriage and Insurance Paid to\n - DAP: Delivered At Place\n - DPU: Delivered At Place Unloaded\n - DDP: Delivered Duty Paid\n - DAT: Delivered At Terminal\n - DAF: Delivered At Frontier\n - DES: Delivered Ex Ship\n - DEQ: Delivered Ex Quay (duty paid)\n - DDU: Delivered Duty Unpaid",
+                                            "title": "Incoterm codes"
+                                          },
+                                          "location_unlocode": {
+                                            "type": "string",
+                                            "title": "The UN/Locode at which terms apply"
+                                          }
+                                        },
+                                        "title": "Incoterm information for a route"
+                                      },
+                                      "pol_unlocode": {
+                                        "type": "string",
+                                        "title": "UN/Locode of the Port of Loading"
+                                      },
+                                      "pod_unlocode": {
+                                        "type": "string",
+                                        "title": "UN/Locode of the Port of Discharge"
+                                      },
+                                      "carrier_move_type": {
+                                        "type": "object",
+                                        "properties": {
+                                          "move_from": {
+                                            "type": "string",
+                                            "enum": [
+                                              "MOVE_TYPE_UNSPECIFIED",
+                                              "PORT",
+                                              "DOOR",
+                                              "RAMP"
+                                            ],
+                                            "default": "MOVE_TYPE_UNSPECIFIED",
+                                            "title": "- PORT: Port\n - DOOR: Door (address)\n - RAMP: Ramp"
+                                          },
+                                          "move_to": {
+                                            "type": "string",
+                                            "enum": [
+                                              "MOVE_TYPE_UNSPECIFIED",
+                                              "PORT",
+                                              "DOOR",
+                                              "RAMP"
+                                            ],
+                                            "default": "MOVE_TYPE_UNSPECIFIED",
+                                            "title": "- PORT: Port\n - DOOR: Door (address)\n - RAMP: Ramp"
+                                          }
+                                        },
+                                        "description": "Defines which parts of the route will be handled by the carrier."
+                                      },
+                                      "instructions": {
+                                        "type": "string",
+                                        "title": "Any general instructions (visible to participants)"
+                                      },
+                                      "booking_instructions": {
+                                        "type": "string",
+                                        "title": "Instructions sent to the carrier during booking"
+                                      }
+                                    },
+                                    "title": "Base data for maritime routes"
+                                  },
+                                  "locations": {
+                                    "type": "object",
+                                    "properties": {
+                                      "collection_origin": {
+                                        "type": "object",
+                                        "properties": {
+                                          "organization_external_id": {
+                                            "type": "string"
+                                          },
+                                          "person_external_id": {
+                                            "type": "string"
+                                          },
+                                          "unlocode": {
+                                            "type": "string",
+                                            "title": "UN/Locode"
+                                          }
+                                        },
+                                        "description": "A location specification."
+                                      },
+                                      "delivery_destination": {
+                                        "type": "object",
+                                        "properties": {
+                                          "organization_external_id": {
+                                            "type": "string"
+                                          },
+                                          "person_external_id": {
+                                            "type": "string"
+                                          },
+                                          "unlocode": {
+                                            "type": "string",
+                                            "title": "UN/Locode"
+                                          }
+                                        },
+                                        "description": "A location specification."
+                                      }
+                                    },
+                                    "description": "Locations along the container's route."
+                                  },
+                                  "dates_times": {
+                                    "type": "object",
+                                    "properties": {
+                                      "collection": {
+                                        "type": "object",
+                                        "properties": {
+                                          "local_date": {
+                                            "type": "string",
+                                            "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                          },
+                                          "local_time": {
+                                            "type": "string",
+                                            "title": "Local time, optional, hh:mm:ss ISO 8601 format"
+                                          }
+                                        },
+                                        "title": "A local date and optional time, in ISO 8601 formats"
+                                      },
+                                      "departure": {
+                                        "type": "object",
+                                        "properties": {
+                                          "local_date": {
+                                            "type": "string",
+                                            "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                          },
+                                          "local_time": {
+                                            "type": "string",
+                                            "title": "Local time, optional, hh:mm:ss ISO 8601 format"
+                                          }
+                                        },
+                                        "title": "A local date and optional time, in ISO 8601 formats"
+                                      },
+                                      "arrival": {
+                                        "type": "object",
+                                        "properties": {
+                                          "local_date": {
+                                            "type": "string",
+                                            "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                          },
+                                          "local_time": {
+                                            "type": "string",
+                                            "title": "Local time, optional, hh:mm:ss ISO 8601 format"
+                                          }
+                                        },
+                                        "title": "A local date and optional time, in ISO 8601 formats"
+                                      },
+                                      "delivery": {
+                                        "type": "object",
+                                        "properties": {
+                                          "local_date": {
+                                            "type": "string",
+                                            "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                          },
+                                          "local_time": {
+                                            "type": "string",
+                                            "title": "Local time, optional, hh:mm:ss ISO 8601 format"
+                                          }
+                                        },
+                                        "title": "A local date and optional time, in ISO 8601 formats"
+                                      }
+                                    },
+                                    "title": "Dates and times of a container's route milestones"
+                                  }
+                                },
+                                "description": "Specify how to route a container."
+                              },
+                              "parties": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "organization_external_id": {
+                                      "type": "string"
+                                    },
+                                    "person_external_id": {
+                                      "type": "string"
+                                    },
+                                    "role_references": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "role": {
+                                            "type": "string",
+                                            "enum": [
+                                              "PARTY_ROLE_UNSPECIFIED",
+                                              "SHIPPER",
+                                              "CONSIGNEE",
+                                              "FORWARDER",
+                                              "NOTIFY_1",
+                                              "NOTIFY_2",
+                                              "NOTIFY_3"
+                                            ],
+                                            "default": "PARTY_ROLE_UNSPECIFIED",
+                                            "description": "A party's role carries certain rights and responsibilities,\nwhich depend on the model the role is applied to.\n\n - SHIPPER: Responsible for the shipment (usually the producer or the owner of the goods).\n - CONSIGNEE: Responsible for receiving the goods (usually the buyer of the goods).\n - FORWARDER: Arranges transport of goods on behalf of either the seller or buyer\n - NOTIFY_1: Responsible for arranging the arrival formalities of the vessel.\n - NOTIFY_2: Responsible for arranging the arrival formalities of the vessel.\n - NOTIFY_3: Responsible for arranging the arrival formalities of the vessel."
+                                          },
+                                          "reference": {
+                                            "type": "string",
+                                            "description": "The document or file reference used by the party."
+                                          }
+                                        },
+                                        "description": "The party's role and associated reference for the entity (container, shipment, etc)."
+                                      }
+                                    }
+                                  }
+                                },
+                                "description": "The parties associated to this container."
+                              }
+                            },
+                            "description": "A container and some extra information."
+                          },
+                          "description": "Containers in the shipment."
+                        },
+                        "parties": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "organization_external_id": {
+                                "type": "string"
+                              },
+                              "person_external_id": {
+                                "type": "string"
+                              },
+                              "role_references": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "role": {
+                                      "type": "string",
+                                      "enum": [
+                                        "PARTY_ROLE_UNSPECIFIED",
+                                        "SHIPPER",
+                                        "CONSIGNEE",
+                                        "FORWARDER",
+                                        "NOTIFY_1",
+                                        "NOTIFY_2",
+                                        "NOTIFY_3"
+                                      ],
+                                      "default": "PARTY_ROLE_UNSPECIFIED",
+                                      "description": "A party's role carries certain rights and responsibilities,\nwhich depend on the model the role is applied to.\n\n - SHIPPER: Responsible for the shipment (usually the producer or the owner of the goods).\n - CONSIGNEE: Responsible for receiving the goods (usually the buyer of the goods).\n - FORWARDER: Arranges transport of goods on behalf of either the seller or buyer\n - NOTIFY_1: Responsible for arranging the arrival formalities of the vessel.\n - NOTIFY_2: Responsible for arranging the arrival formalities of the vessel.\n - NOTIFY_3: Responsible for arranging the arrival formalities of the vessel."
+                                    },
+                                    "reference": {
+                                      "type": "string",
+                                      "description": "The document or file reference used by the party."
+                                    }
+                                  },
+                                  "description": "The party's role and associated reference for the entity (container, shipment, etc)."
+                                }
+                              }
+                            }
+                          },
+                          "description": "Parties in the shipment."
+                        },
+                        "incoterm": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "enum": [
+                                "INCOTERM_UNSPECIFIED",
+                                "FOB",
+                                "CFR",
+                                "FAS",
+                                "CIF",
+                                "EXW",
+                                "FCA",
+                                "CPT",
+                                "CIP",
+                                "DAP",
+                                "DPU",
+                                "DDP",
+                                "DAT",
+                                "DAF",
+                                "DES",
+                                "DEQ",
+                                "DDU"
+                              ],
+                              "default": "INCOTERM_UNSPECIFIED",
+                              "description": "- FOB: Free On Board\n - CFR: Cost and Freight\n - FAS: Free Alongside Ship\n - CIF: Cost, Insurance & Freight\n - EXW: Ex Works\n - FCA: Free Carrier\n - CPT: Carriage Paid To\n - CIP: Carriage and Insurance Paid to\n - DAP: Delivered At Place\n - DPU: Delivered At Place Unloaded\n - DDP: Delivered Duty Paid\n - DAT: Delivered At Terminal\n - DAF: Delivered At Frontier\n - DES: Delivered Ex Ship\n - DEQ: Delivered Ex Quay (duty paid)\n - DDU: Delivered Duty Unpaid",
+                              "title": "Incoterm codes"
+                            },
+                            "location_unlocode": {
+                              "type": "string",
+                              "title": "The UN/Locode at which terms apply"
+                            }
+                          },
+                          "title": "Incoterm information for a route"
+                        },
+                        "pol_unlocode": {
+                          "type": "string",
+                          "title": "UN/Locode of the Port of Loading (up-to-date)"
+                        },
+                        "pod_unlocode": {
+                          "type": "string",
+                          "title": "UN/Locode of the Port of Discharge (up-to-date)"
+                        },
+                        "first_voyage_number": {
+                          "type": "string",
+                          "title": "Voyage number of the first leg (up-to-date)"
+                        },
+                        "first_vessel_name": {
+                          "type": "string",
+                          "title": "Vessel name of the first leg (up-to-date)"
+                        },
+                        "legs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "pol_unlocode": {
+                                "type": "string"
+                              },
+                              "pod_unlocode": {
+                                "type": "string"
+                              },
+                              "voyage_number": {
+                                "type": "string"
+                              },
+                              "vessel_name": {
+                                "type": "string"
+                              },
+                              "service_name": {
+                                "type": "string"
+                              },
+                              "times": {
+                                "type": "object",
+                                "properties": {
+                                  "departure": {
+                                    "type": "object",
+                                    "properties": {
+                                      "local_date": {
+                                        "type": "string",
+                                        "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                      }
+                                    },
+                                    "title": "A local date in ISO 8601 format"
+                                  },
+                                  "arrival": {
+                                    "type": "object",
+                                    "properties": {
+                                      "local_date": {
+                                        "type": "string",
+                                        "title": "Local date, YYYY-MM-DD ISO 8601 format"
+                                      }
+                                    },
+                                    "title": "A local date in ISO 8601 format"
+                                  }
+                                },
+                                "title": "Calculated based on latest data"
+                              },
+                              "transit_time": {
+                                "type": "string"
+                              },
+                              "transport_mode": {
+                                "type": "string",
+                                "enum": [
+                                  "VESSEL",
+                                  "FEEDER",
+                                  "BARGE",
+                                  "TRUCK",
+                                  "RAIL",
+                                  "OTHER",
+                                  "UNDEFINED"
+                                ],
+                                "default": "VESSEL"
+                              }
+                            }
+                          },
+                          "title": "Legs (up-to-date)"
+                        },
+                        "carrier_move_type": {
+                          "type": "object",
+                          "properties": {
+                            "move_from": {
+                              "type": "string",
+                              "enum": [
+                                "MOVE_TYPE_UNSPECIFIED",
+                                "PORT",
+                                "DOOR",
+                                "RAMP"
+                              ],
+                              "default": "MOVE_TYPE_UNSPECIFIED",
+                              "title": "- PORT: Port\n - DOOR: Door (address)\n - RAMP: Ramp"
+                            },
+                            "move_to": {
+                              "type": "string",
+                              "enum": [
+                                "MOVE_TYPE_UNSPECIFIED",
+                                "PORT",
+                                "DOOR",
+                                "RAMP"
+                              ],
+                              "default": "MOVE_TYPE_UNSPECIFIED",
+                              "title": "- PORT: Port\n - DOOR: Door (address)\n - RAMP: Ramp"
+                            }
+                          },
+                          "description": "Defines which parts of the route will be handled by the carrier."
+                        },
+                        "rate": {
+                          "type": "object",
+                          "properties": {
+                            "contract_id": {
+                              "type": "string"
+                            },
+                            "organization_external_id": {
+                              "type": "string"
+                            },
+                            "person_external_id": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "discrepancies": {
+                          "type": "object"
+                        }
+                      },
+                      "description": "Read-only, never used to update a shipment.\n'Up-to-date' information, vs requirements, plan, booking, tracking ..."
+                    },
+                    "http_response": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "details": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type_url": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string",
+                            "format": "byte"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "buyco_reference",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "ShipmentSummary"
         ]
       }
     }
