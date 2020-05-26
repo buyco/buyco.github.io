@@ -350,9 +350,9 @@
                                   "package_spec": {
                                     "type": "object",
                                     "properties": {
-                                      "type_name": {
+                                      "package_type_code": {
                                         "type": "string",
-                                        "title": "The type of package"
+                                        "title": "The code of the package type - UNECE 2-alphanumeric package code"
                                       },
                                       "gross_weight_g": {
                                         "type": "string",
@@ -1160,9 +1160,9 @@
                                   "package_spec": {
                                     "type": "object",
                                     "properties": {
-                                      "type_name": {
+                                      "package_type_code": {
                                         "type": "string",
-                                        "title": "The type of package"
+                                        "title": "The code of the package type - UNECE 2-alphanumeric package code"
                                       },
                                       "gross_weight_g": {
                                         "type": "string",
@@ -2420,18 +2420,8 @@
                           "title": "Buyco identifier for the shipment"
                         },
                         "shipment_created_at": {
-                          "type": "object",
-                          "properties": {
-                            "local_date": {
-                              "type": "string",
-                              "title": "Local date, YYYY-MM-DD ISO 8601 format"
-                            },
-                            "local_time": {
-                              "type": "string",
-                              "title": "Local time, hh:mm:ss ISO 8601 format"
-                            }
-                          },
-                          "title": "A local date and (required) time, in ISO 8601 formats"
+                          "type": "string",
+                          "title": "When the shipment was created (string iso8601)"
                         },
                         "external_id": {
                           "type": "string",
@@ -2441,7 +2431,7 @@
                           "type": "string",
                           "enum": [
                             "OPEN",
-                            "CANCELLED",
+                            "CANCELED",
                             "DELETED"
                           ],
                           "default": "OPEN"
@@ -2513,7 +2503,7 @@
                             "SENT",
                             "PENDING",
                             "CONFIRMED",
-                            "CANCELLED",
+                            "CANCELED",
                             "DECLINED",
                             "FAILED",
                             "AMEND_REQUESTED"
@@ -2527,10 +2517,6 @@
                         "bill_of_lading_number": {
                           "type": "string",
                           "description": "Bill of lading number is an identifier that links to a shipment."
-                        },
-                        "empty_pickup_reference": {
-                          "type": "string",
-                          "description": "Reference number for the empty container pickup."
                         },
                         "times": {
                           "type": "object",
@@ -2841,9 +2827,9 @@
                                         "package_spec": {
                                           "type": "object",
                                           "properties": {
-                                            "type_name": {
+                                            "package_type_code": {
                                               "type": "string",
-                                              "title": "The type of package"
+                                              "title": "The code of the package type - UNECE 2-alphanumeric package code"
                                             },
                                             "gross_weight_g": {
                                               "type": "string",
