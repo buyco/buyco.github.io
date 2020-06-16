@@ -350,9 +350,9 @@
                                   "package_spec": {
                                     "type": "object",
                                     "properties": {
-                                      "package_type_code": {
+                                      "type_name": {
                                         "type": "string",
-                                        "title": "The code of the package type - UNECE 2-alphanumeric package code"
+                                        "title": "The type of package"
                                       },
                                       "gross_weight_g": {
                                         "type": "string",
@@ -1160,9 +1160,9 @@
                                   "package_spec": {
                                     "type": "object",
                                     "properties": {
-                                      "package_type_code": {
+                                      "type_name": {
                                         "type": "string",
-                                        "title": "The code of the package type - UNECE 2-alphanumeric package code"
+                                        "title": "The type of package"
                                       },
                                       "gross_weight_g": {
                                         "type": "string",
@@ -2430,11 +2430,12 @@
                         "status": {
                           "type": "string",
                           "enum": [
+                            "UNSPECIFIED",
                             "OPEN",
                             "CANCELED",
                             "DELETED"
                           ],
-                          "default": "OPEN"
+                          "default": "UNSPECIFIED"
                         },
                         "cutoff_dates": {
                           "type": "object",
@@ -2492,12 +2493,12 @@
                             "name": {
                               "type": "string"
                             }
-                          },
-                          "title": "TODO set as common"
+                          }
                         },
                         "booking_status": {
                           "type": "string",
                           "enum": [
+                            "UNSPECIFIED",
                             "NONE",
                             "DRAFT",
                             "SENT",
@@ -2508,7 +2509,7 @@
                             "FAILED",
                             "AMEND_REQUESTED"
                           ],
-                          "default": "NONE"
+                          "default": "UNSPECIFIED"
                         },
                         "booking_reference": {
                           "type": "string",
@@ -2827,9 +2828,9 @@
                                         "package_spec": {
                                           "type": "object",
                                           "properties": {
-                                            "package_type_code": {
+                                            "type_name": {
                                               "type": "string",
-                                              "title": "The code of the package type - UNECE 2-alphanumeric package code"
+                                              "title": "The type of package"
                                             },
                                             "gross_weight_g": {
                                               "type": "string",
@@ -3348,15 +3349,15 @@
                               "transport_mode": {
                                 "type": "string",
                                 "enum": [
+                                  "UNSPECIFIED",
                                   "VESSEL",
                                   "FEEDER",
                                   "BARGE",
                                   "TRUCK",
                                   "RAIL",
-                                  "OTHER",
-                                  "UNSPECIFIED"
+                                  "OTHER"
                                 ],
-                                "default": "VESSEL"
+                                "default": "UNSPECIFIED"
                               }
                             }
                           },
@@ -3405,11 +3406,52 @@
                           }
                         },
                         "discrepancies": {
-                          "type": "object"
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "entity_1": {
+                                "type": "string",
+                                "enum": [
+                                  "ENTITY_UNSPECIFIED",
+                                  "SHIPMENT",
+                                  "BOOKING_CONFIRMATION"
+                                ],
+                                "default": "ENTITY_UNSPECIFIED"
+                              },
+                              "entity_2": {
+                                "type": "string",
+                                "enum": [
+                                  "ENTITY_UNSPECIFIED",
+                                  "SHIPMENT",
+                                  "BOOKING_CONFIRMATION"
+                                ],
+                                "default": "ENTITY_UNSPECIFIED"
+                              },
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "TYPE_UNSPECIFIED",
+                                  "NB_OF_CONTAINERS_MISMATCH",
+                                  "CONTAINER_TYPE_MISMATCH",
+                                  "CONTAINER_SIZE_MISMATCH",
+                                  "POL_MISMATCH",
+                                  "POD_MISMATCH"
+                                ],
+                                "default": "TYPE_UNSPECIFIED"
+                              },
+                              "message": {
+                                "type": "string"
+                              }
+                            },
+                            "title": "An operational discrepancy\nContains the 2 entities compared (e.g. Shipment vs BookingConfirmation), and the resulting mismatch"
+                          },
+                          "title": "Any discrepancies found (calculated)"
                         },
                         "tracking_status": {
                           "type": "string",
                           "enum": [
+                            "UNSPECIFIED",
                             "NONE",
                             "UNDER_PREPARATION",
                             "INLAND_PRE_CARRIAGE",
@@ -3420,8 +3462,7 @@
                             "IN_TRANSSHIPMENT",
                             "COMPLETED"
                           ],
-                          "default": "NONE",
-                          "title": "TODO move to tracking / common package ?"
+                          "default": "UNSPECIFIED"
                         }
                       },
                       "description": "Read-only, never used to update a shipment.\n'Up-to-date' information, vs requirements, plan, booking, tracking ..."
