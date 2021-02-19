@@ -282,7 +282,7 @@
           "DEPO",
           "COFS"
         ],
-        "description": "A type of Facility - DCSA definitions"
+        "description": "A type of Facility - DCSA definitions \n- POTE : Port Terminal\n- INTE : Inland Terminal (aka. Dry Port) e.g. Rail Ramp (USDET, USPIT)\n- CLOC : Customer Location \n- COYA : Container Yard\n- DEPO : Depot\n- COFS : Container Freight Station"
       },
       "UNLocationCode": {
         "type": "string",
@@ -569,7 +569,8 @@
         },
         "required": [
           "code"
-        ]
+        ],
+        "description": "Incoterm - International Commercial Terms"
       },
       "RoutingInstructions": {
         "type": "object",
@@ -587,7 +588,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Facility"
-            }
+            },
+            "description": "Optional, to specify constraints (e.g. via a POL or POD.)"
           },
           "pre_ship_from": {
             "type": "array",
@@ -613,10 +615,11 @@
           },
           "carrier_instructions": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "Free text, sent to the carrier in a booking request"
           }
         },
-        "description": "Routing instructions \n<p> Minimum input in order to elaborate a #Plan </p>\n\n<p> ship_from & ship_to are used to select a sailing schedule (including carrier haulage)\nThey can be a Port, or an inland Customer Location or other place (i.e. Door)  </p>\n\n<p> Additional routing information (merchant haulage) can be \nspecified with pre_ship_from & post_ship_to </p>"
+        "description": "Routing instructions \n<p> Minimum input in order to elaborate a transport plan </p>\n\n<p> ship_from & ship_to are used to select a sailing schedule (including carrier haulage)\nThey can be a port, an inland customer location, or other facility type </p>\n\n<p> Additional routing information (merchant haulage) can be \nspecified with pre_ship_from & post_ship_to </p>"
       },
       "Person": {
         "type": "object",
