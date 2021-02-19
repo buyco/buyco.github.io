@@ -1,0 +1,156 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="shipment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="external_id" minOccurs="0"/>
+        <xs:element name="containers" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="type"/>
+              <xs:element type="xs:string" name="size"/>
+              <xs:element name="additional_references" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="name"/>
+                    <xs:element type="xs:string" name="value"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:integer" name="measured_weight_g" minOccurs="0"/>
+              <xs:element name="physical_container">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="identification_number"/>
+                    <xs:element type="xs:string" name="iso_size_type" minOccurs="0"/>
+                    <xs:element type="xs:integer" name="tare_weight_g" minOccurs="0"/>
+                    <xs:element type="xs:integer" name="max_gross_weight_g" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="cargoes" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:integer" name="package_count"/>
+                    <xs:element name="package_spec">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="package_type_code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="readiness_date" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:date" name="date"/>
+                          <xs:element type="xs:string" name="time"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:integer" name="net_weight_g" minOccurs="0"/>
+                    <xs:element type="xs:integer" name="gross_weight_g" minOccurs="0"/>
+                    <xs:element type="xs:string" name="description" minOccurs="0"/>
+                    <xs:element type="xs:string" name="purchase_order_number" minOccurs="0"/>
+                    <xs:element type="xs:string" name="marks_and_numbers" minOccurs="0"/>
+                    <xs:element name="products" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:integer" name="piece_count" minOccurs="0"/>
+                          <xs:element type="xs:string" name="sku"/>
+                          <xs:element type="xs:string" name="name"/>
+                          <xs:element type="xs:string" name="harmonized_system_code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="seals" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="number"/>
+                    <xs:element type="xs:string" name="type"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="routing_instructions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="incoterm" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="code"/>
+                    <xs:element type="xs:string" name="location_unlocode" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ship_from">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="type"/>
+                    <xs:element type="xs:string" name="unlocode" minOccurs="0"/>
+                    <xs:element type="xs:string" name="organization_external_id" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ship_to">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="type"/>
+                    <xs:element type="xs:string" name="unlocode" minOccurs="0"/>
+                    <xs:element type="xs:string" name="organization_external_id" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="post_ship_to" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="type"/>
+                    <xs:element type="xs:string" name="unlocode" minOccurs="0"/>
+                    <xs:element type="xs:string" name="organization_external_id" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:date" name="ship_from_date"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="parties" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="role_references" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="role"/>
+                    <xs:element type="xs:string" name="reference" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="organization">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="name"/>
+                    <xs:element name="address">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="street"/>
+                          <xs:element type="xs:string" name="city"/>
+                          <xs:element type="xs:string" name="postal_code" minOccurs="0"/>
+                          <xs:element type="xs:string" name="country_code"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="bl_properties_template_id" minOccurs="0"/>
+        <xs:element type="xs:string" name="general_instructions" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
